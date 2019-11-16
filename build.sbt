@@ -2,7 +2,7 @@ name := "photo-service"
 
 version := "0.1"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.12.7"
 
 lazy val akkaVersion = "2.5.25"
 

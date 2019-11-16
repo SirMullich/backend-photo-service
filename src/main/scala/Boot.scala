@@ -15,7 +15,7 @@ import akka.stream.scaladsl.StreamConverters
 import akka.util.Timeout
 import org.slf4j.LoggerFactory
 
-import scala.jdk.CollectionConverters._
+import scala.collection.JavaConverters._
 
 import scala.concurrent.duration._
 
