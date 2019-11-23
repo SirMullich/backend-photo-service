@@ -13,10 +13,10 @@ import com.amazonaws.regions.Regions
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 import akka.stream.scaladsl.StreamConverters
 import akka.util.Timeout
+import com.typesafe.config.ConfigFactory
 import org.slf4j.LoggerFactory
 
 import scala.collection.JavaConverters._
-
 import scala.concurrent.duration._
 
 object Boot extends App with SprayJsonSerializer {
@@ -30,7 +30,12 @@ object Boot extends App with SprayJsonSerializer {
 
   val clientRegion: Regions = Regions.EU_CENTRAL_1
 
-  val credentials = new BasicAWSCredentials("your access key","your secret key")
+  val config = ConfigFactory.load()
+
+  val accessKey = config.getString("aws.access-key")
+  val secretKey = config.getString("aws.secret-key")
+
+  val credentials = new BasicAWSCredentials(accessKey,secretKey)
 
   val client: AmazonS3 = AmazonS3ClientBuilder.standard()
     .withCredentials(new AWSStaticCredentialsProvider(credentials))
